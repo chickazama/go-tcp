@@ -12,6 +12,10 @@ var (
 	nextID = 1
 )
 
+const (
+	historyFilePath = "./history.txt"
+)
+
 type Server struct {
 	fp        *os.File
 	mtx       sync.Mutex
@@ -23,7 +27,7 @@ type Server struct {
 func NewServer(network, addr string) *Server {
 	var err error
 	ret := new(Server)
-	ret.fp, err = os.OpenFile("history.txt", os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0644)
+	ret.fp, err = os.OpenFile(historyFilePath, os.O_APPEND|os.O_WRONLY|os.O_CREATE, 0644)
 	if err != nil {
 		log.Fatal(err.Error())
 	}
