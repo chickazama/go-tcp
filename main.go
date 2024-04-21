@@ -1,6 +1,10 @@
 package main
 
-import "log"
+import (
+	"log"
+
+	"github.com/chickazama/go-tcp/server"
+)
 
 const (
 	network = "tcp4"
@@ -8,7 +12,7 @@ const (
 )
 
 func main() {
-	s := NewServer(network, addr)
+	s := server.NewServer(network, addr)
 	go s.Send()
 	log.Fatal(s.AcceptConnections())
 }
